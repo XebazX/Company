@@ -1,7 +1,9 @@
 from flask import Flask
 import os
+from flask_sqlalchemy import SQLAlchemy
 from app.extensiones import db
- 
+from flask_login import LoginManager
+login_manager = LoginManager()
 
 
 
@@ -12,8 +14,21 @@ def create_app():
     
     db.init_app(app)
 
-   
+    login_manager.init_app(app)
+    login_manager.login_view = 'Administrador.login'
     
+    @login_manager.user_loader
+    def load_user(idUser): # Flask-Login intentará cargar al usuario actual basándose en su identificador.
+        from .models.Administrador import Administrador
+        from .models.Promotor import Promotor
+        from .routes.Administrador_routes import tipo
+        
+        if tipo == 0 : 
+             return Promotor.query.get(int(idUser))
+        elif tipo == 1 : 
+             return Administrador.query.get(int(idUser))
+        
+
     
       
         

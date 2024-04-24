@@ -120,7 +120,7 @@ button:hover {
 }
 
 #tle {
-    color: aqua;
+    color: rgb(255, 0, 0);
     align-items: center;
     padding-top: 1vw;
     display: flex;
@@ -129,13 +129,14 @@ button:hover {
 }
 
 #iss {
-    background-color:  #000000;
+    background-color:  #fff7;
     display: table;
     justify-content: center;
     margin-top: 50px;
     border-radius: 50px;
-    border: aqua solid 10px;
+    border: rgb(255, 58, 58) solid 10px;
     width: 650px;
+    backdrop-filter: blur(5px);
 }
 
 #fm {
@@ -163,13 +164,14 @@ button:hover {
 }
 
 #isss {
-    background-color: #000000;
+    background-color: #fff7;
     display: table;
     width: 500px;
     height: 530px;
     margin-top: 50px;
     border-radius: 50px;
-    border: aqua solid 10px;
+    border: rgb(255, 63, 63) solid 10px;
+    backdrop-filter: blur(5px);
 }
 
 #dpd {
@@ -267,6 +269,7 @@ img[id="paginasborder"]:hover {
     width: 500px;
     height: fit-content;
     width: 100%;
+    color: black;
 }
 
 .mss {
@@ -313,7 +316,7 @@ img[id="paginasborder"]:hover {
     justify-content: space-between;
 }
 .bg{
-    background-image: url('imagenes/agreproduct.jpg');
+    background-image: url('imagenes/stats.png');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -321,7 +324,7 @@ img[id="paginasborder"]:hover {
     background-origin: content-box;
 }
 .bg2{
-    background-image: url('imagenes/productos.jpg');
+    background-image: url('imagenes/estacion.png');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;

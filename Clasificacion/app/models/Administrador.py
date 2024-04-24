@@ -1,5 +1,7 @@
 from app.extensiones import db
 from app import db
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 # from sqlalchemy import Column, Integer, String
 # from sqlalchemy.ext.declarative import declarative_base
 
@@ -11,3 +13,9 @@ class  Administrador(db.Model):
     numeroAdm = db.Column(db.Integer, nullable=False)
     correoAdm = db.Column(db.String(45), nullable=False)
     documentoAdm = db.Column(db.Integer, nullable=False)
+   
+    
+    
+    def get_id(self):
+        return str(self.idAdministrador)
+    #tomare ss de la db por si acaso

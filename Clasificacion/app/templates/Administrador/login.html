@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estiloi.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='bootstrap-5.3.0/js/bootstrap.bundle.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body  id="bdy" class="bg2"  >
+
+<div class="container mt-5">
+    <div id="isss" class="col-md-6 offset-md-3">
+        <h2 id="tle" >Login</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}             
+                    {% for category, message in messages %}
+                        <div class="flash-message alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    <div >
+        <div id="ubic" >
+
+            <img id="ubic" src="{{ url_for('static', filename='imagenes/terp.webp') }}" alt="" style="width: 35%; height: 35%; " >
+
+        </div>
+
+        <form id="fm" method="post" action="{{ url_for('Administrador.login') }}">
+            <div class="col-md-9">
+                <br><label id="lbl" for="validationCustom01" class="form-label">Ingrese Su Correo</label><br>
+                <input name="correo" type="email" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Ok
+                </div>
+                <div class="invalid-feedback">
+                    Ingrese su Correo
+                </div>
+
+                <div class="col-md-12">
+                    <br><br>
+                    <label id="lbl" for="validationCustom03" class="form-label">Ingrese su Contraseña</label>
+                    <br><input name="password" type="password" class="form-control" id="validationCustom03" required>
+                    <div class="valid-feedback">
+                        Ok
+                    </div>
+                    <div class="invalid-feedback">
+                        Ingrese su Contraseña
+                    </div>
+                </div>
+                <br>
+                <center> <a id="shining-text" href="{{ url_for('Promotores.registro') }}">No tienes cuenta? Registrate!</a> </center>
+                <br>
+                <div id="lbl" class="col-12">
+                    <button id="lbl"  class="btn btn-primary" type="submit">Enviar</button>
+                </div>
+
+        </form>
+    </div>
+
+    <script>
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+    <style>
+@keyframes shining {
+  0% { color: #ffbbbb; }
+  50% { color: rgb(255, 0, 0); text-shadow: 0 0 50px rgb(255, 0, 0); }
+  100% { color: #ffbbbb; }
+}
+
+.shining-text {
+  animation: shining 2s linear infinite;
+}
+</style>
+</script>
+    <style>
+@keyframes shining {
+  0% { color: #013cff; }
+  50% { color: rgb(255, 0, 0); text-shadow: 0 0 50px rgb(170, 236, 255); }
+  100% { color: #013cff; }
+}
+
+#shining-text {
+  animation: shining 4s linear infinite;
+  text-decoration: none;
+}
+</style>
+
+    </div>
+</div>
+
+</body>
+</html>

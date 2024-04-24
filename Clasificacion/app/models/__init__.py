@@ -7,7 +7,7 @@ from app.models.Rango import Rango
 
 
 
-
+# ya o no? -> nada aun
 
 
 

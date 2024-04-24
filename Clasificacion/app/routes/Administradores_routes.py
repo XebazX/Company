@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, render_template, redirect, url_for, request, flash
 from app.models.Administrador import Administrador
+from app.models.Rango import Rango
 # from app.models.Cliente import Cliente
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
@@ -22,8 +23,11 @@ def add():
         bcrypt = Bcrypt()
         Correo = request.form['correo']
         Contrasena = request.form['contrasena']
+        nombre = request.form['nombre']
+        documento = request.form['documento']
+        numero = request.form['numero']
         hashed_password = bcrypt.generate_password_hash(Contrasena.encode('utf-8'))
-        new_admin = Administrador(correoAdm=Correo, contrasenaAdm=hashed_password)
+        new_admin = Administrador(correoAdm=Correo, contrasenaAdm=hashed_password, nombreAdm=nombre, documentoAdm=documento, numeroAdm=numero)
         print(new_admin)
         db.session.add(new_admin)
         db.session.commit()
