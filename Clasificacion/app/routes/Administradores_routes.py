@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, render_template, redirect, url_for, request, flash
 from app.models.Administrador import Administrador
 from app.models.Rango import Rango
-# from app.models.Cliente import Cliente
+from app.models import Promotor
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
 from app import db
@@ -21,13 +21,13 @@ def index():
 def add():
     if request.method == 'POST':
         bcrypt = Bcrypt()
-        Correo = request.form['correo']
-        Contrasena = request.form['contrasena']
         nombre = request.form['nombre']
-        documento = request.form['documento']
         numero = request.form['numero']
+        Correo = request.form['correo']
+        documento = request.form['documento']
+        Contrasena = request.form['contrasena']
         hashed_password = bcrypt.generate_password_hash(Contrasena.encode('utf-8'))
-        new_admin = Administrador(correoAdm=Correo, contrasenaAdm=hashed_password, nombreAdm=nombre, documentoAdm=documento, numeroAdm=numero)
+        new_admin = Administrador(nombreAdm=nombre,numeroAdm=numero,correoAdm=Correo, documentoAdm=documento,contrasenaAdm=hashed_password)
         print(new_admin)
         db.session.add(new_admin)
         db.session.commit()
@@ -70,15 +70,14 @@ def login():
         username = request.form['correo']
         password = request.form['password']
         
-        # user = Cliente.query.filter_by(direccionCliente=username,contrasenaCliente=password).first()
-        user = None
+        user = Promotor.query.filter_by(correoPro=username,contrasenaPro=password).first() # aqui busca al usuario, w
  
-        if user :
+        if user : 
             
             tipo = 0 
             login_user(user)
             flash("Login successful!", "success")
-            return redirect(url_for('Productos.index'))
+            return redirect(url_for('Promotores.index'))
         
         else:
             user = Administrador.query.filter_by(correoAdm=username).first()

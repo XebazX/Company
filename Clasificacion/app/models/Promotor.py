@@ -6,7 +6,7 @@ from app.models.Rango import Rango
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, Date
 
-class Promotor(db.Model):
+class Promotor(db.Model, UserMixin): # ya se 
     __tablename__ = "promotores"# -> el nombre de la tabla debería ser en plural, nojoa
     idPromotor = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombrePro = db.Column(db.String(45), nullable=False)
@@ -14,7 +14,18 @@ class Promotor(db.Model):
     correoPro = db.Column(db.String(45), nullable=False)
     documentoPro =db. Column(db.String(45), nullable=False)
     contrasenaPro =db. Column(db.Integer, nullable=False)
-    Rango_idRango = db.Column(db.Integer, ForeignKey('Rangos.idRango')) #cambielo a True dropppperdverrrrrrrrdaaaaaaaaaaaaaa
+    Rango_idRango = db.Column(db.Integer, ForeignKey('Rangos.idRango'))
+    
+    #lets try wait a minute, estare intentando algo
+    
+    
+    @property
+    def pl(self):
+        return self.nombrePro[0] if self.nombrePro else None
+    
+    def get_id(self):
+        return str(self.idPromotor)
+    #cambielo a True dropppperdverrrrrrrrdaaaaaaaaaaaaaa
     
     
     #si se cambian a string servira o q, o acomodar la columna?

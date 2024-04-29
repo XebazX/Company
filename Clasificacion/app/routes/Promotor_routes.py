@@ -12,8 +12,8 @@ bp = Blueprint('Promotores', __name__)
 def index():
     data = Promotor.query.all()
     return render_template('Promotores/index.html', data=data)
-
-
+ 
+#mamahuevo estais ahi?
 @bp.route('/Promotores/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
@@ -21,7 +21,7 @@ def add():
         celular = request.form['celular'] 
         correo = request.form['correo']
         documento = request.form['documento']
-        contrasena = request.form['contrasena']
+        contrasena = request.form['contrasena'] 
         
         NPromotor = Promotor(nombrePro=nombre, numeroPro=celular, correoPro=correo, documentoPro=documento, contrasenaPro=contrasena)
         db.session.add(NPromotor)
@@ -86,3 +86,4 @@ def delete(id):
     return redirect(url_for('Promotores.index'))
 
 
+#<a href="{{ url_for('Promotores.delete', id=Promotor.idPromotor) }}" class="btn btn-danger">Eliminar</a> , el eliminar del promotor

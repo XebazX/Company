@@ -5,6 +5,7 @@ from app.extensiones import db
 from flask_login import LoginManager
 login_manager = LoginManager()
 
+#can i esto? si
 
 
 def create_app():
@@ -19,9 +20,11 @@ def create_app():
     
     @login_manager.user_loader
     def load_user(idUser): # Flask-Login intentará cargar al usuario actual basándose en su identificador.
-        from .models.Administrador import Administrador
-        from .models.Promotor import Promotor
-        from .routes.Administrador_routes import tipo
+        from app.models.Administrador import Administrador
+        from app.models.Promotor import Promotor
+        from app.routes.Administradores_routes import tipo #try
+        
+        print(tipo)
         
         if tipo == 0 : 
              return Promotor.query.get(int(idUser))
@@ -43,6 +46,6 @@ def create_app():
     app.register_blueprint(Audios_routes.bp)
     
     
-    
+#tiene otro login like this ?, solo el de el otro trabajo, el de arriba a ver    
 
     return app
