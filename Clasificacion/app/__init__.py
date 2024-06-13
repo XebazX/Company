@@ -39,11 +39,10 @@ def create_app():
        
     
 
-    from app.routes import Administradores_routes, Promotor_routes, Rango_routes, Audios_routes
+    from app.routes import Administradores_routes, Promotor_routes
     app.register_blueprint(Administradores_routes.bp)
     app.register_blueprint(Promotor_routes.bp)
-    app.register_blueprint(Rango_routes.bp)
-    app.register_blueprint(Audios_routes.bp)
+  
     
     
 #tiene otro login like this ?, solo el de el otro trabajo, el de arriba a ver    

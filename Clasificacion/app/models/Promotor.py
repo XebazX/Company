@@ -2,19 +2,19 @@ from app import db
 from flask_login import UserMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy import Column, Integer, String
-from app.models.Rango import Rango
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, Date
 
-class Promotor(db.Model, UserMixin): # ya se 
-    __tablename__ = "promotores"# -> el nombre de la tabla debería ser en plural, nojoa
+class Promotor(db.Model, UserMixin):
     idPromotor = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombrePro = db.Column(db.String(45), nullable=False)
     numeroPro = db.Column(db.String(45), nullable=False)
     correoPro = db.Column(db.String(45), nullable=False)
-    documentoPro =db. Column(db.String(45), nullable=False)
-    contrasenaPro =db. Column(db.Integer, nullable=False)
-    Rango_idRango = db.Column(db.Integer, ForeignKey('Rangos.idRango'))
+    documentoPro = db.Column(db.String(45), nullable=False)
+    contrasenaPro = db.Column(db.String(256), nullable=False)
+    
+    cierres = relationship('Cierre', backref='promotor', lazy=True)
+    turnos = relationship('Turnos', backref='promotor', lazy=True)
     
     #lets try wait a minute, estare intentando algo
     

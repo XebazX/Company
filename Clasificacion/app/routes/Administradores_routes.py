@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, render_template, redirect, url_for, request, flash
 from app.models.Administrador import Administrador
-from app.models.Rango import Rango
 from app.models import Promotor
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
@@ -42,12 +41,14 @@ def edit(id):
 
     if request.method == 'POST':
         admin.Correo = request.form['correo']
+        admin.nombre = request.form['nombre']
+        admin.numero = request.form['numero']
+        admin.documento = request.form['documento']
         admin.Contrasena = request.form['contrasena']
         db.session.commit()
         return redirect(url_for('Administrador.index'))
 
-    return render_template('Administrador/edit.html', admin=admin)
-    
+    return render_template('Administrador/edit.html',)
 
 @bp.route('/Admin/delete/<int:id>')
 def delete(id):

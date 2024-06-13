@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, render_template, redirect, url_for, request, flash
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
-from app.models.Rango import Rango
 from app.models.Promotor import Promotor
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
@@ -50,7 +49,7 @@ def registro():
         
         celular = int(celular) #<- like this, repito no se si funciona intentemosle po
         
-        NPromotor = Promotor(nombrePro=nombre, numeroPro=celular, correoPro=correo, documentoPro=documento, contrasenaPro=contrasena, Rango_idRango=None)
+        NPromotor = Promotor(nombrePro=nombre, numeroPro=celular, correoPro=correo, documentoPro=documento, contrasenaPro=contrasena)
         db.session.add(NPromotor)
         db.session.commit()
         
