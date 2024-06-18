@@ -11,3 +11,5 @@ class MetodosPago(db.Model):
     cantidadMetodo = db.Column(db.String(45), nullable=False)
 
     #ya cambie de todo en eso y sepa
+
+  

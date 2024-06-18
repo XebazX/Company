@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, render
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
 from app.models.Promotor import Promotor
+from app.models.MetodosPago import MetodosPago
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
 
@@ -13,7 +14,7 @@ def index():
     return render_template('Promotores/index.html', data=data)
  
 #mamahuevo estais ahi?
-@bp.route('/Promotores/add', methods=['GET', 'POST'])
+@bp.route('/Promotores/add', methods=['GET', 'POST']) 
 def add():
     if request.method == 'POST':
         nombre = request.form['nombre']

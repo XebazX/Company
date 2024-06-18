@@ -10,6 +10,7 @@ bp = Blueprint('Administrador', __name__)
 
 
 @bp.route('/Administracion')
+@login_required
 def index():
     data = Administrador.query.all()
     print("Data ", data)
@@ -36,6 +37,7 @@ def add():
     return render_template('Administrador/add.html')
 
 @bp.route('/Admin/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit(id):
     admin = Administrador.query.get_or_404(id)
 
@@ -51,6 +53,7 @@ def edit(id):
     return render_template('Administrador/edit.html',)
 
 @bp.route('/Admin/delete/<int:id>')
+@login_required
 def delete(id):
     
     admin = Administrador.query.get_or_404(id)
@@ -62,7 +65,7 @@ def delete(id):
 
 
 @bp.route('/', methods=['GET', 'POST'])
-def login():    
+def login():
     global tipo
     
     
@@ -89,7 +92,7 @@ def login():
                     flash("Login successful!", "success")
                     return redirect(url_for('Administrador.index'))
                 
-    return render_template("/Administrador/login.html")
+    return render_template("Administrador/login.html")
 
 
 @bp.route('/logout')

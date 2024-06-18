@@ -5,6 +5,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 class DetalleMediospago(db.Model):
+    __tablename__ = 'DetalleMediosPago'
     idDetalleMediospago = db.Column(db.Integer, primary_key=True, autoincrement=True)
     totalPago = db.Column(db.String(45), nullable=False)
     Cierre_idCierre = db.Column(db.Integer, ForeignKey('cierre.idCierre'), nullable=False)
