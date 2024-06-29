@@ -27,7 +27,7 @@ def add():
         db.session.add(NPromotor)
         db.session.commit()
         
-        return redirect(url_for('Promotores.index'))
+        return redirect(url_for('Administrador.Admpromotor'))
 
     return render_template('Promotores/add.html')
 

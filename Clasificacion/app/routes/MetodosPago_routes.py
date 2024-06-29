@@ -16,7 +16,7 @@ bp = Blueprint('MetodosPago', __name__)
 def index():
     data = MetodosPago.query.all()
     print("Data ", data)
-    return render_template('MetodoPago/index.html', data=data)
+    return render_template('MetodosPago/index.html', data=data)
 
 
 @bp.route('/MetodosPago/add', methods=['GET', 'POST'])
@@ -24,7 +24,7 @@ def index():
 def add():
     if request.method == 'POST':
         nombre = request.form['nombre']
-        new_met = MetodosPago(nombreMetodo=nombre,numeroMetodo=null)
+        new_met = MetodosPago(nombreMetodo=nombre)
         db.session.add(new_met)
         db.session.commit()
         
@@ -37,14 +37,12 @@ def add():
 def edit(id):
     met = MetodosPago.query.get_or_404(id)
 
-    if request.method == 'POST':
-        met.idLiquidos = request.form['correo']
-        met.nombreLiquido = request.form['nombre']
-        
+    if request.method == 'POST': 
+        met.nombreMetodo = request.form['nombre']
         db.session.commit()
         return redirect(url_for('MetodosPago.index'))
 
-    return render_template('MetodosPago/edit.html',)
+    return render_template('MetodosPago/edit.html', met=met)
 
 @bp.route('/MetodosPago/delete/<int:id>')
 @login_required

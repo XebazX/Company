@@ -11,7 +11,7 @@ bp = Blueprint('Administrador', __name__)
 
 @bp.route('/Administracion')
 @login_required
-def index():
+def index(): #igual aqui
     data = Administrador.query.all()
     print("Data ", data)
     return render_template('Administrador/index.html', data=data)
@@ -101,5 +101,11 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('Administrador.login'))
+
+@bp.route('/AdmPromotores')
+def Admpromotor(): # here la funcion se llama index xde, vea pues
+    data = Promotor.query.all()
+    return render_template('Administrador/promotor.html', data=data)
+ 
 
 

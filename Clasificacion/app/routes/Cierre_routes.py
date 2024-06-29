@@ -7,3 +7,4 @@ from app import db
 
 
 bp = Blueprint('Cierre', __name__)
+

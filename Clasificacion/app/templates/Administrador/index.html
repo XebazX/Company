@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link  href="../../static/imagenes/TerpLog.png" rel='icon'>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
@@ -104,7 +106,8 @@
 
         <nav>
             <ul class="menu">
-                <li><a href="{{ url_for('Promotores.index') }}" class="btn btn-secondary, byt">Ir a Promotores</a></li>
+                <li><a href="{{ url_for('Administrador.Admpromotor') }}" class="btn btn-secondary, byt">Ir a Promotores</a></li>
+                <li><a href="{{url_for('MetodosPago.index')}}" class="btn btn-primary, byt">Ir a MetodosPago</a></li>
                 <li><a href="{{url_for('Administrador.logout')}}" class="btn btn-primary, byt">Cerrar Sesion</a></li>
             </ul>
         </nav>
