@@ -108,6 +108,10 @@
             <ul class="menu">
                 <li><a href="{{ url_for('Administrador.Admpromotor') }}" class="btn btn-secondary, byt">Ir a Promotores</a></li>
                 <li><a href="{{url_for('MetodosPago.index')}}" class="btn btn-primary, byt">Ir a MetodosPago</a></li>
+                <li><a href="{{url_for('Turnos.index')}}" class="btn btn-primary, byt">Ir a Turnos</a></li>
+                <li><a href="{{url_for('Promociones.index')}}" class="btn btn-primary, byt">Ir a promociones</a></li>
+                <li><a href="{{ url_for('Varios.index') }}" class="btn btn-secondary, byt">Ir a Varios</a></li>
+                <li><a href="{{url_for('Liquidos.index')}}" class="btn btn-primary, byt">Ir a Liquidos</a></li>
                 <li><a href="{{url_for('Administrador.logout')}}" class="btn btn-primary, byt">Cerrar Sesion</a></li>
             </ul>
         </nav>
@@ -126,6 +130,11 @@
                 </tr>
             </thead>
             <tbody>
+                {% if not data %}
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No hay resulados</td> 
+                    </tr>
+                {% endif %}
                 {% for Admin in data %}
                 <tr>
                     <td>{{ Admin.idAdministrador }}</td>

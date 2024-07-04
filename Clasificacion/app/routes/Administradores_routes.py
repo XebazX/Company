@@ -103,9 +103,10 @@ def logout():
     return redirect(url_for('Administrador.login'))
 
 @bp.route('/AdmPromotores')
+@login_required
 def Admpromotor(): # here la funcion se llama index xde, vea pues
     data = Promotor.query.all()
     return render_template('Administrador/promotor.html', data=data)
- 
 
 
+#

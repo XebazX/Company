@@ -23,6 +23,11 @@ def create_app():
         from app.models.Administrador import Administrador
         from app.models.Promotor import Promotor
         from app.models.MetodosPago import MetodosPago
+        from app.models.Turnos import Turnos
+        from app.models.Promociones import Promociones
+        from app.models.Liquidos import Liquidos
+        from app.models.Varios import Varios
+
         from app.routes.Administradores_routes import tipo #try
         
         print(tipo)
@@ -40,10 +45,14 @@ def create_app():
        
     
 
-    from app.routes import Administradores_routes, Promotor_routes, MetodosPago_routes
+    from app.routes import Administradores_routes, Promotor_routes, MetodosPago_routes, Turnos_routes, Promociones_routes, Liquidos_routes, Varios_routes
     app.register_blueprint(Administradores_routes.bp)
     app.register_blueprint(Promotor_routes.bp)
     app.register_blueprint(MetodosPago_routes.bp)
+    app.register_blueprint(Turnos_routes.bp)
+    app.register_blueprint(Promociones_routes.bp) #creeria q ya n?, q paso? -> no estaba -> igual el error es que esta accediendo a una columna que no existe en la db- >
+    app.register_blueprint(Liquidos_routes.bp) #creeria q ya n?, q paso? -> no estaba -> igual el error es que esta accediendo a una columna que no existe en la db- >
+    app.register_blueprint(Varios_routes.bp) #creeria q ya n?, q paso? -> no estaba -> igual el error es que esta accediendo a una columna que no existe en la db- >
   
     
     

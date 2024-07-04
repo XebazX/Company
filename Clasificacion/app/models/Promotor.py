@@ -14,7 +14,6 @@ class Promotor(db.Model, UserMixin):
     contrasenaPro = db.Column(db.String(256), nullable=False)
     
     cierres = relationship('Cierre', backref='promotor', lazy=True)
-    turnos = relationship('Turnos', backref='promotor', lazy=True)
     
     #lets try wait a minute, estare intentando algo
     

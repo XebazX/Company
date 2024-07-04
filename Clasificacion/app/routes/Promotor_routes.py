@@ -15,6 +15,7 @@ def index():
  
 #mamahuevo estais ahi?
 @bp.route('/Promotores/add', methods=['GET', 'POST']) 
+@login_required
 def add():
     if request.method == 'POST':
         nombre = request.form['nombre']
@@ -29,7 +30,7 @@ def add():
         
         return redirect(url_for('Administrador.Admpromotor'))
 
-    return render_template('Promotores/add.html')
+    return render_template('Administrador/promotor.html')
 
 
 @bp.route('/Promotores/registro', methods=['GET', 'POST'])
@@ -61,29 +62,31 @@ def registro():
 
     return render_template('Promotores/registro.html')
 
-@bp.route('/Promotores/edit/<int:id>', methods=['GET', 'POST'])
+@bp.route('/Promotores/edit/<int:id>', methods=['GET', 'POST']) # coño la ptm with you why here usted debe utilizar el nombre de las columas que está en la base de datos coño 
+@login_required
 def edit(id):
-    promotor = Promotor.query.get_or_404(id)
+    pro = Promotor.query.get_or_404(id)
 
-    if request.method == 'POST':
-        promotor.nombre = request.form['nombre']
-        promotor.documento = request.form['documento']
-        promotor.correo = request.form['correo']
-        promotor.celular = request.form['celular']
+    if request.method == 'POST': 
+        pro.nombrePro = request.form['nombre']
+        pro.documento = request.form['documento']
+        pro.correo = request.form['correo']
+        pro.numero = request.form['numero']
         db.session.commit()
         return redirect(url_for('Promotores.index'))
 
-    return render_template('Promotores/edit.html', promotor=promotor)
+    return render_template('Promotores/edit.html', pro=pro)
     
 
 @bp.route('/Promotores/delete/<int:id>')
+@login_required
 def delete(id):
     promoto = Promotor.query.get_or_404(id)
     
     db.session.delete(promoto)
     db.session.commit()
 
-    return redirect(url_for('Promotores.index'))
+    return redirect(url_for('Administrador.Admpromotor'))
 
 
 #<a href="{{ url_for('Promotores.delete', id=Promotor.idPromotor) }}" class="btn btn-danger">Eliminar</a> , el eliminar del promotor

@@ -7,5 +7,3 @@ from sqlalchemy.orm import relationship
 class Liquidos(db.Model):
     idLiquidos = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombreLiquido = db.Column(db.String(45), nullable=False)
-    cantidadLiquido = db.Column(db.String(45), nullable=False)
-    precioLiquido = db.Column(db.String(45), nullable=False)

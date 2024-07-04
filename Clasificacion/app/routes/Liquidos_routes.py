@@ -9,64 +9,41 @@ from app import db
 bp = Blueprint('Liquidos', __name__)
 
 
-@bp.route('/Planilla')
+@bp.route('/Liquidos')
 def index():
     data = Liquidos.query.all()
     print("Data ", data)
-    return render_template('Administrador/index.html', data=data)
+    return render_template('Liquidos/index.html', data=data)
 
 
-@bp.route('/Planilla/add', methods=['GET', 'POST'])
+@bp.route('/Liquidos/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
         bcrypt = Bcrypt()
         nombre = request.form['nombre']
-        numero = request.form['numero']
-        Correo = request.form['correo']
-        documento = request.form['documento']
-        Contrasena = request.form['contrasena']
-        hashed_password = bcrypt.generate_password_hash(Contrasena.encode('utf-8'))
-        new_liq = Liquidos(nombreAdm=nombre,numeroAdm=numero,correoAdm=Correo, documentoAdm=documento,contrasenaAdm=hashed_password)
+       
+        new_liq = Liquidos(nombreLiquido=nombre)
         print(new_liq)
         db.session.add(new_liq)
         db.session.commit()
         
-        return redirect(url_for('Administrador.index'))
+        return redirect(url_for('Liquidos.index'))
 
-    return render_template('Administrador/add.html')
+    return render_template('Liquidos/add.html')
 
-@bp.route('/Planilla/edit/<int:id>', methods=['GET', 'POST'])
+@bp.route('/Liquidos/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
     liq = Liquidos.query.get_or_404(id)
 
     if request.method == 'POST':
-        liq.idLiquidos = request.form['correo']
-        liq.nombreLiquido = request.form['nombre']
-        liq.cantidadLiquido = request.form['numero']
-        liq.precioLiquido = request.form['documento']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
-        liq.Contrasena = request.form['contrasena']
+        liq.idLiquidos = request.form['nombre']
+       
         db.session.commit()
-        return redirect(url_for('Administrador.index'))
+        return redirect(url_for('Liquidos.index'))
 
-    return render_template('Administrador/edit.html',)
+    return render_template('Liquidos/edit.html',)
 
-@bp.route('/Admin/delete/<int:id>')
+@bp.route('/Liquidos/delete/<int:id>')
 def delete(id):
     
     admin = Liquidos.query.get_or_404(id)
@@ -74,7 +51,7 @@ def delete(id):
     db.session.delete(admin)
     db.session.commit()
 
-    return redirect(url_for('Administrador.index'))
+    return redirect(url_for('Liquidos.index'))
 
 
 

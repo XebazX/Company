@@ -8,4 +8,3 @@ class Varios(db.Model):
     idVarios = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombreVarios = db.Column(db.String(45), nullable=False)
     cantidadVarios = db.Column(db.String(45), nullable=False)
-    totalVarios = db.Column(db.String(45), nullable=False)

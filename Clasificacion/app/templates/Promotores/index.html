@@ -22,20 +22,26 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Numero</th>
+                    <th>Documento</th>
                     <th>Correo</th>
-                    <th>Opciones</th>
+                    
                    
                 </tr>
             </thead>
             <tbody>
+                {% if not data %}
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No hay resulados</td> 
+                    </tr>
+                {% endif %}
                 {% for Promotor in data %}
                     <tr>
                         <td>{{ Promotor.idPromotor }}</td>
                         <td>{{ Promotor.nombrePro }}</td>
                         <td>{{ Promotor.numeroPro }}</td>
+                        <td>{{ Promotor.documentoPro }}</td>
                         <td>{{ Promotor.correoPro }}</td>
                         <td>
-                            <a href="{{ url_for('Promotores.edit', id=Promotor.idPromotor) }}" class="btn btn-primary">Actualizar datos</a>
                             
                             </form>
                         </td>
@@ -59,6 +65,8 @@
             <li><a class='dropdown-items' href='#'>Perfil</a></li>
             
             <li><hr class='dropdown-divider'></li>
+            
+            
             <a class="dropdown-item" href="{{ url_for('MetodosPago.add') }}">Ir a Metodos de pago</a>
             <li><a class='dropdown-item' href="{{url_for('Administrador.logout')}}">Cerrar session</a></li>
         </ul>

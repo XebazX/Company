@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link  href="../../static/imagenes/TerpLog.png" rel='icon'>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  href="../../static/imagenes/TerpLog.png" rel='icon'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='bootstrap-5.3.0/js/bootstrap.bundle.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='estiloi.css') }}">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+
+        }
+        .byt{
+            background-color: red;
+            border-color: red;
+            color: white;
+        }    
+        
+      
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        th {
+            background-color: rgb(255, 58, 58);
+            color: white;
+        }
+        .actions a {
+            margin-right: 10px;
+        }
+        .dropdown-toggle {
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .dropdown-menu {
+            padding-left: 10px;
+        }
+        .id-column {
+            width: 10%;
+        }
+        .email-column {
+            width: 30%;
+        }
+        .password-column {
+            width: 30%;
+        }
+        nav {
+            background-color: #fff500c7;
+            padding: 10px 0;
+        }
+        
+        .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .menu li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .menu li:last-child {
+            margin-right: 0;
+        }
+        
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #fff;
+        }
+        
+        .menu li a:hover {
+            background-color: #555;
+        }
+    </style>
+    <title>Liquido/Medida</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <nav>
+            <ul class="menu">
+                <li><a href="{{url_for('Administrador.index')}}" class="btn btn-primary, byt">Ir a Administracion</a></li>
+                <li><a href="{{url_for('MetodosPago.index')}}" class="btn btn-primary, byt">Ir a MetodosPago</a></li>
+                <li><a href="{{url_for('Promociones.index')}}" class="btn btn-primary, byt">Ir a Promociones</a></li>
+                <li><a href="{{url_for('Turnos.index')}}" class="btn btn-primary, byt">Ir a Turnos</a></li>
+                <li><a href="{{ url_for('Administrador.Admpromotor') }}" class="btn btn-secondary, byt">Ir a Promotores</a></li>
+                <li><a href="{{url_for('Administrador.logout')}}" class="btn btn-primary, byt">Cerrar Sesiones</a></li>
+            </ul>
+        </nav>
+
+        <h1>Liquidos</h1>
+        <table>
+            <thead> 
+                <tr>
+                    <th class="id-column">ID</th>
+                    <th class="id-column">Nombre</th>
+                   
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if not data %}
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No hay resulados</td> 
+                    </tr>
+                {% endif %}
+
+                {% for liq in data %}
+                <tr>
+                    <td>{{ liq.idLiquidos }}</td>
+                    <td>{{ liq.nombreLiquido }}</td>
+                   
+                    <td class="actions">
+                        
+                        <a href="{{ url_for('Liquidos.edit', id=liq.idLiquidos) }}" class="btn btn-primary">Editar</a>
+                        <a href="{{ url_for('Liquidos.delete', id=liq.idLiquidos) }}" class="btn btn-danger, byt">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('Liquidos.add') }}" class="btn btn-success, byt">Agregar Liquido/Medida</a>
+        <br><br>
+        <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle"></i> {{ current_user.correoAdm }}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Perfil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ url_for('Liquidos.add') }}">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+    <!-- and thats all, nossa cara por cierto, pa  hacer la planilla pa los promotores tmb seria hacer el de liquidos como este? o en la de liquidos se añade todo eso ??? -> pss la de liquidos tiene que hacela igual -> que en esa es para agregar el liquido gasol.... luego puede crear una en la que la vista sea como la de la planilla y en ella los promotores coloquen los datos, y luego essos datos se guarden en los detalles respectivos ok, so faltaria liquuidos y varios, y lo del cierre como seria? -> cierre de turno o dia? -> ambas mano -> pss despues de que el promotor haga el cierre, que esos detalle se guarden en la tabla cierre haciendo el total y demás  tons dsps de que el promotor haga la planialla le vemos el cierre va? va  ok tons obg
+      -->
+ 
+    
+    
+
+    
+
+</body>
+</html>
